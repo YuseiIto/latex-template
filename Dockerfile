@@ -14,5 +14,6 @@ RUN apt-get install -y texlive-xetex
 RUN apt-get install -y latex-cjk-common
 RUN apt-get install -y texlive-fonts-extra
 RUN apt-get install -y xzdec
+RUN apt-get install -y texlive-science
 
 CMD ["/bin/bash"]
