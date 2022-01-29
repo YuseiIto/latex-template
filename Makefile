@@ -25,7 +25,7 @@ image:
 
 .PHONY: test
 test:
-	$(NPM) lint $(SOURCE)
+	$(NPM) run lint $(SOURCE)
 
 .PHONY: format
 format:
