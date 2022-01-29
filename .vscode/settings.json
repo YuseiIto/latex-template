@@ -1,0 +1,24 @@
+{
+  "latex-workshop.latex.recipes": [
+    {
+      "name": "lualatex",
+      "tools": [
+        "lualatex-tool"
+      ]
+    },
+  ],
+ "latex-workshop.latex.tools": [
+   {
+     "name": "lualatex-tool",
+     "command": "lualatex",
+     "args": ["%DOC%"]
+   }
+ ],
+ "latex-workshop.chktex.enabled": false,
+ "latex-workshop.docker.enabled": true,
+ "latex-workshop.docker.image.latex": "yuseiito/texlive-ubuntu:latest",
+ "latex-workshop.latex.autoBuild.run":"onSave",
+ "latex-workshop.latex.outDir": ".",
+ "latex-workshop.synctex.afterBuild.enabled": true,
+ "latex-workshop.view.pdf.viewer": "tab"
+}
