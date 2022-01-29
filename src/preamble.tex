@@ -1,0 +1,47 @@
+\documentclass[]{ltjsarticle} % ltjsarticle: 論文, ltjsreport: 報告書 ,ltjsbook: 書籍
+
+
+% Metadata = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+\date{\today}
+\author{Yusei Ito \thanks{筑波大学情報学群情報科学類}} % Split with `\and` to include more authors.
+\title{LuaLaTeX Template}
+
+\bibliography{references} % bibtex filename without ".bib" extention
+\bibliographystyle{junsrt} % jplain: List references in alphabetical order, junsrt: List references in cited order
+
+
+% Packages = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+% LuaLaTeX - - - - - - - - 
+\usepackage{luatexja} 
+\usepackage{luatexja-fontspec} % Wabun character control sequences
+\usepackage[haranoaji]{luatexja-preset} % Font preset: use 原ノ味 fonts.
+
+% Document Features - - - - - - - - 
+\usepackage{metalogo} % \LuaLaTeX command
+\usepackage{hyperref} % Hyperlink
+\usepackage{algorithm,algorithmicx} % Pseuedo code
+\usepackage{siunitx} % SI Units
+\usepackage{amssymb,amsmath} % AMS (American Math Society) Mathematics
+\usepackage{mathtools} % amsmath extension
+\usepackage{amsthm} % AMS Theorem
+\usepackage{listings} % Code listing
+\usepackage{graphicx} % Figure
+\usepackage{float} % Better object floating
+\usepackage{caption}  % To customize Figure caption
+\usepackage{tcolorbox} % Framed box
+\usepackage{cleveref} % Clever reference (\cref)
+\usepackage[pdf]{graphviz} % Draw graph with graphviz language
+\usepackage{footnote} % footnote
+\usepackage{pxrubrica} % Ruby
+\usepackage{currfile} % Current file path (\currfiledir etc..)
+\usepackage{wrapfig} % `wrapfig` environment (Locate sentence around figures)
+\usepackage{fancyvrb} % Better \verb
+\usepackage{multicol} % N columns layout
+\usepackage{csvsimple} % Generate document from CSV
+\usepackage{url} % URL (\url)
+
+% Write code better - - - - - - - - 
+\usepackage{subfiles} % To split files
+
+
