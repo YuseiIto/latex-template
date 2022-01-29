@@ -4,7 +4,8 @@
   "description": "yuseiito's latex project template.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "textlint",
+    "lint:fix": "textlint --fix"
   },
   "repository": {
     "type": "git",
@@ -18,5 +19,12 @@
   "bugs": {
     "url": "https://github.com/YuseiIto/latex-template/issues"
   },
-  "homepage": "https://github.com/YuseiIto/latex-template#readme"
+  "homepage": "https://github.com/YuseiIto/latex-template#readme",
+  "devDependencies": {
+    "@proofdict/textlint-rule-proofdict": "^3.1.2",
+    "textlint": "^12.1.0",
+    "textlint-plugin-latex2e": "^1.1.4",
+    "textlint-rule-preset-ja-spacing": "^2.2.0",
+    "textlint-rule-preset-ja-technical-writing": "^7.0.0"
+  }
 }
