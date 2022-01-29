@@ -9,7 +9,7 @@ jobs:
   build_and_push:
     runs-on: ubuntu-latest
     env:
-      IMAGE_NAME: yuseiito/texlive-ubuntu:latest
+      IMAGE_NAME: yuseiito/texlive-ubuntu
     steps:
       - name: checkout
         uses: actions/checkout@v2
