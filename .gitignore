@@ -407,4 +407,7 @@ TSWLatexianTemp*
 # Uncomment the next line to have this generated file ignored.
 #*Notes.bib
 
+# Mac OS
+.DS_Store
+
 .image-built
