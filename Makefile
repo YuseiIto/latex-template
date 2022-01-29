@@ -39,4 +39,4 @@ all: main.pdf
 
 .PHONY: clean
 clean:
-	rm src/*.aux src/*.log src/*.pdf .image-built
+	rm src/*.aux src/*.log src/*.pdf src/*.out .image-built
