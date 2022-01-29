@@ -31,9 +31,11 @@ test:
 format:
 	$(NPM) run lint:fix $(SOURCE)
 
-.PHONY: build
-build: .image-built
+main.pdf: .image-built
 	$(DOCKER_RUN) lualatex main.tex
+
+.PHONY: all
+all: main.pdf
 
 .PHONY: clean
 clean:
