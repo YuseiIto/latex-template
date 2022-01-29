@@ -3,8 +3,8 @@ NPM := npm
 SOURCE := src/*.tex
 IMAGE_NAME:= yuseiito/texlive-ubuntu:latest
 
-.PHONY: build-image
-build-image: Dockerfile
+.PHONY: image
+image: Dockerfile
 	$(DOCKER) build -t $(IMAGE_NAME) .
 
 .PHONY: setup
