@@ -1,0 +1,22 @@
+{
+  "name": "latex-template",
+  "version": "1.0.0",
+  "description": "yuseiito's latex project template.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YuseiIto/latex-template.git"
+  },
+  "keywords": [
+    "LaTeX"
+  ],
+  "author": "Yusei Ito",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/YuseiIto/latex-template/issues"
+  },
+  "homepage": "https://github.com/YuseiIto/latex-template#readme"
+}
