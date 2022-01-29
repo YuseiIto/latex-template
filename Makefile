@@ -1,9 +1,21 @@
+DOCKER := docker
+NPM := npm
 SOURCE := src/*.tex
+IMAGE_NAME:= yuseiito/texlive-ubuntu:latest
+
+.PHONY: build-image
+build-image: Dockerfile
+	$(DOCKER) build -t $(IMAGE_NAME) .
+
+.PHONY: setup
+setup:
+	$(NPM) install
+	$(MAKE) build-image
 
 .PHONY: test
 test:
-	npm run lint $(SOURCE)
+	$(NPM) lint $(SOURCE)
 
 .PHONY: format
 format:
-	npm run lint:fix $(SOURCE)
+	$(NPM) run lint:fix $(SOURCE)
