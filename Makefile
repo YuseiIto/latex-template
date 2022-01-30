@@ -5,6 +5,8 @@ SOURCE_DIR:= src
 SOURCE := $(SOURCE_DIR)/*.tex
 MAIN_FILE:= main
 
+DOCS := *.md
+
 DOCKER := docker
 DOCKER_RUN:= $(DOCKER) run -v $(PWD)/src:/workdir --rm $(IMAGE_NAME) 
 
@@ -12,7 +14,7 @@ DOCKER_RUN:= $(DOCKER) run -v $(PWD)/src:/workdir --rm $(IMAGE_NAME)
 .PHONY: setup
 setup:
 	$(NPM) install
-	$(MAKE) build-image
+	$(MAKE) image
 
 
 .PHONY: image
@@ -25,11 +27,11 @@ image:
 
 .PHONY: test
 test:
-	$(NPM) run lint $(SOURCE)
+	$(NPM) run lint $(SOURCE) $(DOCS)
 
 .PHONY: format
 format:
-	$(NPM) run lint:fix $(SOURCE)
+	$(NPM) run lint:fix $(SOURCE) $(DOCS)
 
 main.pdf: .image-built
 	$(DOCKER_RUN) lualatex main.tex
