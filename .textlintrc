@@ -2,7 +2,17 @@
   "plugins": [
     "latex2e"
   ],
-  "filters": {},
+  "filters": {
+    "allowlist": {
+      "allow": [
+        "ignored-word",
+        "/\\d{4}-\\d{2}-\\d{2}/",
+        "/===IGNORE===[\\s\\S]*?===\/IGNORE===/m",
+        "情報科学特別演習"
+      ]
+    },
+    "comments": true
+  },
   "rules": {
     "preset-ja-spacing": {
       "ja-space-between-half-and-full-width": {
