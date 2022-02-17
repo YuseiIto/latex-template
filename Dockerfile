@@ -2,9 +2,9 @@ FROM ubuntu:latest
 RUN mkdir /workdir
 WORKDIR /workdir
 
-RUN apt-get update
 
 ENV  DEBIAN_FRONTEND noninteractive
+RUN apt-get update
 RUN apt-get install -y texlive-lang-japanese
 RUN apt-get install -y texlive-luatex
 RUN apt-get install -y texlive-latex-recommended
