@@ -16,4 +16,8 @@ RUN apt-get install -y texlive-fonts-extra
 RUN apt-get install -y xzdec
 RUN apt-get install -y texlive-science
 
+# For mint package
+RUN apt-get install -y python3-pip
+RUN pip install Pygments
+
 CMD ["/bin/bash"]
