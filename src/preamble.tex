@@ -16,12 +16,13 @@
 % Document Features - - - - - - - - 
 \usepackage{metalogo} % \LuaLaTeX command
 \usepackage{hyperref} % Hyperlink
-\usepackage{algorithm,algorithmicx} % Pseuedo code
+\usepackage{algorithm,algpseudocode} % Pseuedo code
 \usepackage{siunitx} % SI Units
 \usepackage{amssymb,amsmath} % AMS (American Math Society) Mathematics
 \usepackage{mathtools} % amsmath extension
 \usepackage{amsthm} % AMS Theorem
 \usepackage{listings} % Code listing
+\usepackage[newfloat]{minted}
 \usepackage{graphicx} % Figure
 \usepackage{float} % Better object floating
 \usepackage{caption}  % To customize Figure caption
@@ -40,4 +41,19 @@
 % Write code better - - - - - - - - 
 \usepackage{subfiles} % To split files
 
+% Custom Commands - - - - - - - - - 
+\newcommand{\etal}{\textit{et al}. }
+\newcommand{\ie}{\textit{i}.\textit{e}., }
+\newcommand{\eg}{\textit{e}.\textit{g}. }
 
+\crefname{table}{表}{表}
+\crefname{figure}{図}{図}
+
+\crefformat{part}{第#2#1#3部}
+\crefformat{section}{#2#1#3章}
+\crefformat{subsection}{#2#1#3節}
+\crefformat{subsubsection}{#2#1#3項}
+
+\usemintedstyle{github}
+\renewcommand{\figurename}{図}
+\renewcommand{\tablename}{表}
