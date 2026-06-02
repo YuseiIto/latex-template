@@ -1,24 +1,29 @@
 {
   "latex-workshop.latex.recipes": [
     {
-      "name": "lualatex",
+      "name": "latexmk (lualatex)",
       "tools": [
-        "lualatex-tool"
+        "latexmk"
       ]
-    },
+    }
   ],
- "latex-workshop.latex.tools": [
-   {
-     "name": "lualatex-tool",
-     "command": "lualatex",
-     "args": ["%DOC%"]
-   }
- ],
- "latex-workshop.chktex.enabled": false,
- "latex-workshop.docker.enabled": true,
- "latex-workshop.docker.image.latex": "yuseiito/texlive-ubuntu:latest",
- "latex-workshop.latex.autoBuild.run":"onSave",
- "latex-workshop.latex.outDir": ".",
- "latex-workshop.synctex.afterBuild.enabled": true,
- "latex-workshop.view.pdf.viewer": "tab"
+  "latex-workshop.latex.tools": [
+    {
+      "name": "latexmk",
+      "command": "latexmk",
+      "args": [
+        "-lualatex",
+        "-shell-escape",
+        "-synctex=1",
+        "-interaction=nonstopmode",
+        "-outdir=.",
+        "%DOC%"
+      ]
+    }
+  ],
+  "latex-workshop.latex.outDir": ".",
+  "latex-workshop.latex.autoBuild.run": "onSave",
+  "latex-workshop.chktex.enabled": false,
+  "latex-workshop.synctex.afterBuild.enabled": true,
+  "latex-workshop.view.pdf.viewer": "tab"
 }

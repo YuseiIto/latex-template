@@ -3,21 +3,19 @@ IMAGE_NAME:= yuseiito/texlive-ubuntu:latest
 
 SOURCE_DIR:= src
 SOURCE := $(SOURCE_DIR)/**/*.tex $(SOURCE_DIR)/*.tex
-ENTRYPOINTS:= main.tex
-BIBTEX_FILES := references.bib
+ENTRYPOINTS:= main
 
 DOCS := *.md
 
 DOCKER := docker
-DOCKER_RUN:= $(DOCKER) run -v $(PWD)/src:/workdir --rm $(IMAGE_NAME) 
-LUATEX := $(DOCKER_RUN) lualatex --shell-escape
-BIBTEX := $(DOCKER_RUN) pbibtex
+DOCKER_RUN:= $(DOCKER) run -v $(PWD)/src:/workdir --rm $(IMAGE_NAME)
+# 依存解決(再コンパイル回数・bibtex 実行)は latexmk に委ねる。設定は src/.latexmkrc。
+LATEXMK := $(DOCKER_RUN) latexmk -lualatex -shell-escape
 
 .PHONY: setup
 setup:
 	$(NPM) install
 	$(MAKE) image
-
 
 .PHONY: image
 image:
@@ -35,27 +33,11 @@ test:
 format:
 	$(NPM) run lint:fix $(SOURCE) $(DOCS)
 
-
-%.aux: .image-built $(SOURCE_DIR)/%.tex
-		$(LUATEX) $*
-	
-%.bbl: %.aux .image-built $(BIBTEX_FILES:%=$(SOURCE_DIR)/%)
-	$(BIBTEX) $*
-	$(LUATEX) $*
-
-%.pdf: .image-built %.aux %.bbl
-	$(LUATEX) $*
-
 .PHONY: all
-all: $(ENTRYPOINTS:%.tex=%.pdf)
+all: .image-built
+	$(LATEXMK) $(ENTRYPOINTS)
 
 .PHONY: clean
 clean:
-	rm -f $(ENTRYPOINTS:%.tex=$(SOURCE_DIR)/%.aux)
-	rm -f $(ENTRYPOINTS:%.tex=$(SOURCE_DIR)/%.log)
-	rm -f $(ENTRYPOINTS:%.tex=$(SOURCE_DIR)/%.pdf)
-	rm -f $(ENTRYPOINTS:%.tex=$(SOURCE_DIR)/%.out)
-	rm -f $(ENTRYPOINTS:%.tex=$(SOURCE_DIR)/%.toc)
-	rm -f $(ENTRYPOINTS:%.tex=$(SOURCE_DIR)/%.bbl)
-	rm -f $(ENTRYPOINTS:%.tex=$(SOURCE_DIR)/%.blg)
+	@if [ -f .image-built ]; then $(LATEXMK) -C $(ENTRYPOINTS); fi
 	rm -f .image-built
