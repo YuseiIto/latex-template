@@ -8,11 +8,11 @@
 
 ## Requirements
 - Docker
-  - コンテナによるビルド環境を提供するために利用します
+  - コンテナによるビルド環境を提供するために利用する
 - GNU Make
-  - 成果物の生成/削除といったビルドを実行するためのタスクランナーとして利用します
-- Node / npm
-  - `textlint`による自動校正を実現するために利用します
+  - 成果物の生成/削除といったビルドを実行するためのタスクランナーとして利用する
+- Node / npm（Node 20 以上）
+  - `textlint`による自動校正を実現するために利用する
 
 ## 使い方
 
@@ -26,28 +26,25 @@ make setup
 
 ### 文書のビルド
 
-普通、先に`make setup`が正常に完了していれば文書のみが生成されますが、`make setup`に失敗して`.image-built` ファイルがない場合、再度イメージを作成します。
-
- 
 ```zsh
 make all
 ```
 
-普通、先に`make setup`が正常に完了していれば文書のみが生成されますが、`make setup`に失敗して`.image-built` ファイルがない場合、再度イメージを作成します。
+先に`make setup`が正常に完了していれば文書のみが生成されますが、`.image-built`ファイルがない場合は再度イメージを作成してからビルドします。再コンパイルの回数や`pbibtex`の実行は[latexmk](https://ctan.org/pkg/latexmk)が自動で判定します（設定は`src/.latexmkrc`）。
 
-LaTeX 文書は、`src/` 以下に置いてください。Makefile 中の `MAIN_FILE`でビルド対象の`.tex`ファイルが指定されます。
+LaTeX 文書は、`src/`以下に置いてください。ビルド対象の`.tex`ファイルは Makefile 中の`ENTRYPOINTS`で指定します。
 
 
 ### 文書の校正
-このプロジェクトには [textlint](https://textlint.github.io/) による自動校正用の設定が実装されています。
+このプロジェクトには[textlint](https://textlint.github.io/)による自動校正用の設定が実装されています。
 
-以下のようにして自動構成によるエラー指摘が得られます。
+次のようにして自動構成によるエラー指摘が得られます。
 
 ```zsh
 % make test
 ```
 
-また、一部の問題は以下のようにすることで自動修正されます。
+また、一部の問題は次のようにすることで自動修正されます。
 
 ```
 make format
@@ -55,7 +52,7 @@ make format
 
 ### Cleanup
 
-生成ファイルは、以下のコマンドで cleanup できます。
+生成ファイルは、次のコマンドで cleanup できます。
 
 ```zsh
 make clean
@@ -63,6 +60,8 @@ make clean
 
 ## VSCode Support
 本プロジェクトは、Requirements で挙げたプログラム以外に、エディタとして VSCode を使用することを想定して、[LaTeX Workshop](https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop)などの拡張機能を設定してあります。適宜使用してください。
+
+また、[Dev Containers](https://code.visualstudio.com/docs/devcontainers/containers)用の`.devcontainer/`を同梱しています。VSCode で "Reopen in Container" を実行すると、TeX Live と Node を含むコンテナ内で編集・ビルド・校正が完結します。
 
 
 ## CI workflow
@@ -72,16 +71,16 @@ make clean
 ## そのほかの技術的詳細
 ### Docker Imageについて
 
-このプロジェクトでは、[TeX Live](https://www.tug.org/texlive/) を Ubuntu 上でホストする docker コンテナを利用します。
+このプロジェクトでは、[TeX Live](https://www.tug.org/texlive/)を Ubuntu 上でホストする docker コンテナを利用します。
 
-以下のコマンドでビルドされ、その名前は `yuseiito/texlive-ubuntu` です。
+次のコマンドでビルドされ、その名前は`yuseiito/texlive-ubuntu`です。
 
 ```zsh
 make image
 ```
 
 
-GitHub Container Registry 上でもビルド済みコンテナを提供しています。以下のように入手できます。
+GitHub Container Registry 上でもビルド済みコンテナを提供しています。次のように入手できます。
 
 ```zsh
 docker pull ghcr.io/yuseiito/texlive-ubuntu:latest
@@ -90,4 +89,4 @@ docker pull ghcr.io/yuseiito/texlive-ubuntu:latest
 ## Licence
 このテンプレートのうち、このテンプレートリポジトリに格納されたデータは CC0 ライセンスで配布します。(ただし、このリポジトリが読み込む各コンポーネントはそれぞれ別のライセンスで保護されている場合があります)
 
-このテンプレートを用いて文書を公開される場合は、`LICENCE` ファイルおよび本ファイル下部のライセンスに関する記述を削除するか置き換えて、ご自身の文書の権利をご自身の責任で保護してください。
+このテンプレートを用いて文書を公開される場合は、`LICENCE`ファイルおよび本ファイル下部のライセンスに関する記述を削除するか置き換えて、ご自身の文書の権利をご自身の責任で保護してください。
