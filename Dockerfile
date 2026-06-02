@@ -1,23 +1,20 @@
-FROM ubuntu:latest
-RUN mkdir /workdir
+FROM ubuntu:24.04
+
 WORKDIR /workdir
 
-
-ENV  DEBIAN_FRONTEND noninteractive
-RUN apt-get update
-RUN apt-get install -y texlive-lang-japanese
-RUN apt-get install -y texlive-luatex
-RUN apt-get install -y texlive-latex-recommended
-RUN apt-get install -y texlive-latex-extra
-RUN apt-get install -y fonts-lmodern
-RUN apt-get install -y texlive-xetex
-RUN apt-get install -y latex-cjk-common
-RUN apt-get install -y texlive-fonts-extra
-RUN apt-get install -y xzdec
-RUN apt-get install -y texlive-science
-
-# For mint package
-RUN apt-get install -y python3-pip
-RUN pip install Pygments
+# minted は pygmentize を、本テンプレは latexmk をビルドに用いる。
+# luatexja で日本語を扱うため、XeTeX や latex-cjk-common は導入しない。
+RUN DEBIAN_FRONTEND=noninteractive apt-get update \
+    && apt-get install -y --no-install-recommends \
+        texlive-lang-japanese \
+        texlive-luatex \
+        texlive-latex-recommended \
+        texlive-latex-extra \
+        texlive-fonts-extra \
+        texlive-science \
+        fonts-lmodern \
+        latexmk \
+        python3-pygments \
+    && rm -rf /var/lib/apt/lists/*
 
 CMD ["/bin/bash"]
